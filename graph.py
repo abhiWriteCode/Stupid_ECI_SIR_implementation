@@ -7,8 +7,7 @@ class Node:
         self.voter = voter
         relative_epic_ids = voter.get_relatives_epic_ids()
         voters = get_data_from_DB(relative_epic_ids)
-        relatives = [voters.get(epic_id) for epic_id in relative_epic_ids]
-        self.relatives = list(filter(lambda x: x is not None, relatives))
+        self.relatives = [voters[epic_id] for epic_id in relative_epic_ids if voters.get(epic_id) is not None]
         self.valid_voter: bool = False
 
     def check_valid_voter_or_not(self) -> bool:
