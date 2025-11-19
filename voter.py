@@ -21,5 +21,8 @@ class Voter:
 	def get_relatives_epic_ids(self) -> list:
 		return list(filter(lambda x: x != '', [self.father__epic_id, self.mother_epic_id, self.spouse_epic_id]))
 
+	def __eq__(self, obj): 
+		return type(obj) == obj.__class__ and self.name == obj.name and self.epic_id == obj.epic_id
+
 	def __repr__(self):
 		return f"Voter(Epic={self.epic_id})"
